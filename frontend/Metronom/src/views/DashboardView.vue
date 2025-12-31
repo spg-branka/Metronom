@@ -6,7 +6,7 @@
       <div class="max-w-7xl w-full">
         <!-- Header Section -->
         <div class="mb-12 text-center">
-          <h2 class="text-4xl font-bold text-text mb-2">Live Weather Data</h2>
+          <h2 class="text-4xl font-bold text-text mb-2">Live-Wetterdaten</h2>
           <div class="flex items-center justify-center gap-3">
             <span class="text-lg font-semibold text-primary">{{ time }}</span>
             <div class="w-2 h-2 bg-primary rounded-full animate-pulse"></div>

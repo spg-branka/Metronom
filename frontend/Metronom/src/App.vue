@@ -1,11 +1,18 @@
-<script setup></script>
+<script setup>
+import { useRouter } from 'vue-router'
+import { onMounted } from 'vue'
+
+const router = useRouter()
+
+onMounted(() => {
+  if (router.currentRoute.value.path === '/') {
+    router.push('/dashboard')
+  }
+})
+</script>
 
 <template>
-  <h1>You did it!</h1>
-  <p>
-    Visit <a href="https://vuejs.org/" target="_blank" rel="noopener">vuejs.org</a> to read the
-    documentation
-  </p>
+  <router-view />
 </template>
 
 <style scoped></style>

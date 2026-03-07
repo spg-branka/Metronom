@@ -4,7 +4,7 @@
 
 @layer base {
   body {
-    @apply bg-gray-50 text-gray-900;
+    @apply bg-background text-text;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -14,14 +14,14 @@
 
 @layer components {
   .card {
-    @apply bg-white rounded-xl shadow-md p-6 border border-gray-100;
+    @apply bg-card rounded-xl shadow-md p-6 border border-card-border;
   }
 
   .btn-primary {
-    @apply bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg transition duration-200;
+    @apply bg-btn-active hover:bg-primary-dark text-btn-active-text font-semibold py-2 px-4 rounded-lg transition duration-200;
   }
 
   .btn-secondary {
-    @apply bg-gray-200 hover:bg-gray-300 text-gray-900 font-semibold py-2 px-4 rounded-lg transition duration-200;
+    @apply bg-btn-inactive hover:bg-btn-inactive-hover text-btn-inactive-text font-semibold py-2 px-4 rounded-lg transition duration-200;
   }
 }

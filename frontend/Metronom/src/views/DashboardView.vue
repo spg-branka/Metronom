@@ -62,9 +62,9 @@
                 <ClockIcon class="w-full h-auto object-contain" />
               </div>
             </div>
-            <div class="w-full flex flex-col justify-center items-center">
-              <h3 class="text-xl sm:text-lg md:text-2xl lg:text-3xl font-bold text-text mb-4">Die Geschichte unserer Hofuhr</h3>
-              <p class="text-gray-600 text-base sm:text-sm md:text-base lg:text-lg leading-relaxed">
+            <div class="w-full mt-4 sm:mt-0 flex flex-col justify-center items-center">
+              <h3 class="text-xl sm:text-lg md:text-2xl lg:text-3xl font-bold text-text mb-4 text-center sm:text-left">Die Geschichte unserer Hofuhr</h3>
+              <p class="text-gray-600 text-base sm:text-sm md:text-base lg:text-lg leading-relaxed text-justify lg:text-center">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere reprehenderit impedit rerum necessitatibus quas amet iste, odio culpa, veritatis, ipsum totam aut voluptatem! Alias tempore, dignissimos voluptate, eaque necessitatibus reprehenderit excepturi quis dolore labore accusantium repellat corporis ratione nihil aperiam. Officiis accusamus sunt, eius similique commodi animi ea cumque veniam.
               </p>
             </div>

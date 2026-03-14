@@ -1,21 +1,14 @@
 import express from 'express';
 import {
-  receiveWeatherData,
   getCurrentWeather
 } from '../controllers/weatherController.js';
 
 const router = express.Router();
 
 /**
- * POST /api/weather/data
- * Receives weather data from ESP32
- * Body: { temperature, humidity, pressure, ... }
- */
-router.post('/data', receiveWeatherData);
-
-/**
  * GET /api/weather/current
- * Returns the latest weather data
+ * Fetches current weather data from ESP32
+ * Backend acts as gateway with validation and error handling
  */
 router.get('/current', getCurrentWeather);
 

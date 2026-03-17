@@ -35,15 +35,20 @@ app.use((req, res) => {
 // Error handler (must be last)
 app.use(errorHandler);
 
-// Start server
-app.listen(PORT, HOST, () => {
-  console.log(`\n✓ Metronom Backend running on http://${HOST}:${PORT}`);
-  console.log(`✓ Environment: ${process.env.NODE_ENV || 'development'}`);
-  console.log(`✓ API Documentation: http://${HOST}:${PORT}/api/weather\n`);
-});
+export const startServer = (port = PORT, host = HOST) => {
+  return app.listen(port, host, () => {
+    console.log(`\nMetronom Backend running on http://${host}:${port}`);
+    console.log(`Environment: ${process.env.NODE_ENV || 'development'}`);
+    console.log(`API Documentation: http://${host}:${port}/api/weather\n`);
+  });
+};
+
+if (process.env.NODE_ENV !== 'test') {
+  startServer(PORT, HOST);
+}
 
 // Graceful shutdown
 process.on('SIGTERM', () => {
-  console.log('\n✓ SIGTERM received, shutting down gracefully...');
+  console.log('\nSIGTERM received, shutting down gracefully...');
   process.exit(0);
 });

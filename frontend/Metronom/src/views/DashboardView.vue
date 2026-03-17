@@ -15,10 +15,10 @@
             </div>
             <!-- Status Message -->
             <div v-if="weatherStore.error" class="mt-3 text-status-error text-xs sm:text-sm font-medium">
-              ⚠️ {{ weatherStore.error }}
+              Warning: {{ weatherStore.error }}
             </div>
             <div v-else-if="!weatherStore.isDataAvailable" class="mt-3 text-status-warning text-xs sm:text-sm font-medium">
-              ⏳ Warte auf Wetterdaten vom Server...
+              Waiting for weather data from server...
             </div>
             <div v-else-if="weatherStore.lastUpdated" class="mt-3 text-text-lighter text-xs sm:text-sm">
               aktualisiert: {{ lastUpdateTime }}

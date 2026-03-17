@@ -1,13 +1,10 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 
-// FRONTEND-ONLY MODE: Backend disabled for frontend development
-// Uncomment the API calls below when ready to integrate with backend
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api'
 
-// const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api'
-
-// Generate random weather data for frontend development
-const generateMockWeatherData = () => {
+// Kept for local development fallback and tests.
+export const generateMockWeatherData = () => {
   return {
     temperature: Math.random() * 60 - 20, // Random temperature between -20 and 40
     humidity: Math.random() * 50 + 30, // Random humidity between 30% and 80%
@@ -36,46 +33,50 @@ export const useWeatherStore = defineStore('weather', () => {
   const isDataAvailable = computed(() => currentWeather.value !== null)
 
   const formattedTemperature = computed(() => {
-    if (!currentWeather.value) return '--°C'
+    if (!currentWeather.value || typeof currentWeather.value.temperature !== 'number') return '--°C'
     return `${currentWeather.value.temperature.toFixed(1)}°C`
   })
 
   const formattedHumidity = computed(() => {
-    if (!currentWeather.value) return '--'
+    if (!currentWeather.value || typeof currentWeather.value.humidity !== 'number') return '--'
     return `${currentWeather.value.humidity.toFixed(0)}%`
   })
 
   const formattedPressure = computed(() => {
-    if (!currentWeather.value) return '-- hPa'
+    if (!currentWeather.value || typeof currentWeather.value.pressure !== 'number') return '-- hPa'
     return `${currentWeather.value.pressure.toFixed(1)} hPa`
   })
 
   const formattedWindSpeed = computed(() => {
-    if (!currentWeather.value) return '-- km/h'
+    if (!currentWeather.value || typeof currentWeather.value.wind_speed !== 'number') return '-- km/h'
     return `${currentWeather.value.wind_speed.toFixed(1)} km/h`
   })
-
-  // Automatically regenerate mock weather data every 5 seconds
-  setInterval(() => {
-    currentWeather.value = generateMockWeatherData()
-    lastUpdated.value = new Date()
-  }, 5000)
 
   // Helper to generate fresh mock data
   const generateFreshMockData = () => {
     return generateMockWeatherData()
   }
 
-  // Methods (DISABLED - Backend not running)
-  const fetchCurrentWeather = async () => {
-    // BACKEND DISABLED FOR FRONTEND DEVELOPMENT
-    // Uncomment below to enable API calls:
-    /*
+  // Methods
+  const fetchCurrentWeather = async (options = {}) => {
+    const {
+      useBackend = true,
+      apiBaseUrl = API_BASE_URL,
+      fallbackToMock = true
+    } = options
+
+    if (!useBackend) {
+      const freshData = generateFreshMockData()
+      currentWeather.value = freshData
+      lastUpdated.value = new Date()
+      return freshData
+    }
+
     loading.value = true
     error.value = null
 
     try {
-      const response = await fetch(`${API_BASE_URL}/weather/current`)
+      const response = await fetch(`${apiBaseUrl}/weather/current`)
 
       if (!response.ok) {
         throw new Error(`Server error: ${response.status}`)
@@ -88,31 +89,23 @@ export const useWeatherStore = defineStore('weather', () => {
         lastUpdated.value = new Date()
         return data.data
       } else {
-        error.value = data.error || 'Failed to fetch weather data'
+        throw new Error(data.error || 'Failed to fetch weather data')
       }
     } catch (err) {
       error.value = err.message
       console.error('Error fetching weather:', err)
+
+      if (fallbackToMock) {
+        const freshData = generateFreshMockData()
+        currentWeather.value = freshData
+        lastUpdated.value = new Date()
+        return freshData
+      }
+
+      return null
     } finally {
       loading.value = false
     }
-    */
-
-    // Mock implementation - remove when backend is ready
-    console.log('📌 Using mock weather data (backend disabled)')
-    
-    // Generate fresh mock data to simulate changing conditions
-    const freshData = generateFreshMockData()
-    currentWeather.value = freshData
-    lastUpdated.value = new Date()
-    
-    // Simulate network delay
-    loading.value = true
-    setTimeout(() => {
-      loading.value = false
-    }, 300)
-    
-    return freshData
   }
 
   const clearError = () => {

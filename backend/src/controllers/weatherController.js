@@ -14,7 +14,7 @@ export const getCurrentWeather = async (req, res, next) => {
     // Check cache first
     const cached = getCachedData();
     if (cached) {
-      console.log('✓ Returning cached weather data');
+      console.log('Returning cached weather data');
       return res.json({
         success: true,
         data: cached,
@@ -22,7 +22,7 @@ export const getCurrentWeather = async (req, res, next) => {
       });
     }
 
-    console.log('⟳ Cache expired, fetching fresh data from ESP32...');
+    console.log('Cache expired, fetching fresh data from ESP32...');
 
     // Fetch data from ESP32 with explicit timeout cancellation
     const controller = new AbortController();
@@ -53,17 +53,20 @@ export const getCurrentWeather = async (req, res, next) => {
       throw new AppError(`Invalid data from ESP32: ${validation.errors.join('; ')}`, 502);
     }
 
+    const normalized = validation.normalizedData;
+
     // Format and cache the data
     const formattedData = {
-      temperature: rawData.temperature,
-      humidity: rawData.humidity,
-      pressure: rawData.pressure,
-      wind_speed: rawData.wind_speed || null,
-      wind_direction: rawData.wind_direction || null,
-      rainfall: rawData.rainfall || null,
-      solar_radiation: rawData.solar_radiation || null,
-      uv_index: rawData.uv_index || null,
-      timestamp: rawData.timestamp || Math.floor(Date.now() / 1000),
+      temperature: normalized.temperature,
+      humidity: normalized.humidity,
+      pressure: normalized.pressure,
+      wind_speed: normalized.wind_speed ?? null,
+      wind_direction: normalized.wind_direction ?? null,
+      rainfall: normalized.rainfall ?? null,
+      solar_radiation: normalized.solar_radiation ?? null,
+      uv_index: normalized.uv_index ?? null,
+      timestamp: normalized.timestamp || Math.floor(Date.now() / 1000),
+      firmware_version: normalized.firmware_version ?? null,
       fetchedAt: new Date().toISOString()
     };
 

@@ -29,9 +29,6 @@
       <HumidityIcon v-if="label === 'Luftfeuchtigkeit'" :value="value" class="-mb-6 mx-auto" />
       <PressureIcon v-if="label === 'Luftdruck'" :value="value" class="-mb-6 mx-auto" />
     </div>
-
-    <!-- <img v-if="icon" :src="icon" alt="icon" class="w-12 h-12 sm:w-16 sm:h-16 mb-3 sm:mb-4 opacity-90" /> -->
-    <!-- <div v-if="!icon" class="w-12 h-12 sm:w-16 sm:h-16 mb-3 sm:mb-4 bg-gradient-to-br from-blue-100 to-blue-50 rounded-lg"></div> -->
   </div>
 </template>
 
@@ -42,10 +39,9 @@ import WindSpeedIcon from '../assets/icons/WindSpeedIcon.vue'
 import HumidityIcon from '../assets/icons/HumidityIcon.vue'
 import PressureIcon from '../assets/icons/PressureIcon.vue'
 
-const props = defineProps({
+defineProps({
   label: String,
   value: String,
-  icon: String,
 })
 
 const isExpanded = ref(false)

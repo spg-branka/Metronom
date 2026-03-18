@@ -18,7 +18,7 @@
               Warning: {{ weatherStore.error }}
             </div>
             <div v-else-if="!weatherStore.isDataAvailable" class="mt-3 text-status-warning text-xs sm:text-sm font-medium">
-              Waiting for weather data from server...
+              Warten auf Wetterdaten vom Server...
             </div>
             <div v-else-if="weatherStore.lastUpdated" class="mt-3 text-text-lighter text-xs sm:text-sm">
               aktualisiert: {{ lastUpdateTime }}
@@ -27,25 +27,11 @@
 
           <!-- Weather Cards Grid -->
           <div v-if="weatherStore.isDataAvailable" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-            <WeatherCard label="Temperatur" :value="weatherStore.formattedTemperature" icon="/src/assets/icons/thermometer.png" />
-            <WeatherCard label="Windgeschwindigkeit" :value="weatherStore.formattedWindSpeed" icon="/src/assets/icons/fan.png" />
-            <WeatherCard label="Luftfeuchtigkeit" :value="weatherStore.formattedHumidity" icon="/src/assets/icons/drop.png" />
-            <WeatherCard label="Luftdruck" :value="weatherStore.formattedPressure" icon="/src/assets/icons/barometer.png" />
+            <WeatherCard label="Temperatur" :value="weatherStore.formattedTemperature" />
+            <WeatherCard label="Windgeschwindigkeit" :value="weatherStore.formattedWindSpeed" />
+            <WeatherCard label="Luftfeuchtigkeit" :value="weatherStore.formattedHumidity" />
+            <WeatherCard label="Luftdruck" :value="weatherStore.formattedPressure" />
           </div>
-
-          <!-- Download Section -->
-          <!-- <div v-if="weatherStore.isDataAvailable" class="mt-8 sm:mt-12 text-center">
-            <div class="bg-card rounded-lg shadow-md p-4 sm:p-6 max-w-md mx-auto">
-              <h3 class="text-lg sm:text-xl font-semibold text-text mb-3 sm:mb-4">Wetterdaten herunterladen</h3>
-              <p class="text-text-light text-sm sm:text-base mb-3 sm:mb-4">Lorem ipsum dolor sit amet.</p>
-              <button
-                @click="downloadWeatherData"
-                class="bg-primary hover:bg-primary-dark text-white font-medium py-2 px-4 sm:px-6 rounded-lg text-sm sm:text-base transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
-              >
-                JSON herunterladen
-              </button>
-            </div>
-          </div> -->
 
           <!-- Loading State -->
           <div v-else class="flex flex-col items-center justify-center py-8 sm:py-12">
@@ -104,28 +90,6 @@ function updateTime() {
 
 function refreshWeatherData() {
   weatherStore.fetchCurrentWeather()
-}
-
-function downloadWeatherData() {
-  if (!weatherStore.currentWeather) return
-
-  const dataStr = JSON.stringify(weatherStore.currentWeather, null, 2)
-  const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr)
-
-  const exportFileDefaultName = `weather-data-${new Date().toISOString().split('T')[0]}.json`
-
-  const linkElement = document.createElement('a')
-  linkElement.setAttribute('href', dataUri)
-  linkElement.setAttribute('download', exportFileDefaultName)
-  linkElement.click()
-}
-
-function switchToWeather() {
-  currentSection.value = 'weather'
-}
-
-function switchToProjectInfo() {
-  currentSection.value = 'project-info'
 }
 
 function handleSectionSwitch(section) {

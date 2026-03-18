@@ -84,10 +84,6 @@ export const useWeatherStore = defineStore('weather', () => {
     }
   }
 
-  const clearError = () => {
-    error.value = null
-  }
-
   return {
     // State
     currentWeather,
@@ -103,7 +99,6 @@ export const useWeatherStore = defineStore('weather', () => {
     formattedWindSpeed,
 
     // Methods
-    fetchCurrentWeather,
-    clearError
+    fetchCurrentWeather
   }
 })

@@ -19,12 +19,9 @@ export const generateMockWeatherData = () => {
   }
 }
 
-// Initial mock data
-const MOCK_WEATHER_DATA = generateMockWeatherData()
-
 export const useWeatherStore = defineStore('weather', () => {
   // State
-  const currentWeather = ref(MOCK_WEATHER_DATA)
+  const currentWeather = ref(null)
   const loading = ref(false)
   const error = ref(null)
   const lastUpdated = ref(new Date())
@@ -52,25 +49,11 @@ export const useWeatherStore = defineStore('weather', () => {
     return `${currentWeather.value.wind_speed.toFixed(1)} km/h`
   })
 
-  // Helper to generate fresh mock data
-  const generateFreshMockData = () => {
-    return generateMockWeatherData()
-  }
-
   // Methods
   const fetchCurrentWeather = async (options = {}) => {
     const {
-      useBackend = true,
-      apiBaseUrl = API_BASE_URL,
-      fallbackToMock = true
+      apiBaseUrl = API_BASE_URL
     } = options
-
-    if (!useBackend) {
-      const freshData = generateFreshMockData()
-      currentWeather.value = freshData
-      lastUpdated.value = new Date()
-      return freshData
-    }
 
     loading.value = true
     error.value = null
@@ -95,13 +78,6 @@ export const useWeatherStore = defineStore('weather', () => {
       error.value = err.message
       console.error('Error fetching weather:', err)
 
-      if (fallbackToMock) {
-        const freshData = generateFreshMockData()
-        currentWeather.value = freshData
-        lastUpdated.value = new Date()
-        return freshData
-      }
-
       return null
     } finally {
       loading.value = false
@@ -110,13 +86,6 @@ export const useWeatherStore = defineStore('weather', () => {
 
   const clearError = () => {
     error.value = null
-  }
-
-  // Optional: Add a method to manually refresh with new mock data
-  const refreshMockData = () => {
-    currentWeather.value = generateFreshMockData()
-    lastUpdated.value = new Date()
-    return currentWeather.value
   }
 
   return {
@@ -135,7 +104,6 @@ export const useWeatherStore = defineStore('weather', () => {
 
     // Methods
     fetchCurrentWeather,
-    clearError,
-    refreshMockData
+    clearError
   }
 })

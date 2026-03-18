@@ -8,7 +8,7 @@
         <div v-if="currentSection === 'weather'">
           <!-- Header Section -->
           <div class="mb-8 sm:mb-12 text-center">
-            <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-text mb-2">Test-Wetterdaten</h2>
+            <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-text mb-2">Wetterdaten</h2>
             <div class="flex items-center justify-center gap-3">
               <span class="text-base sm:text-lg font-semibold text-primary">{{ time }}</span>
               <div class="w-2 h-2 bg-primary rounded-full" :class="{ 'animate-pulse': weatherStore.loading }"></div>
@@ -140,8 +140,8 @@ onMounted(() => {
   // Fetch initial weather data
   refreshWeatherData()
 
-  // Refresh weather data every 30 seconds (adjust as needed)
-  refreshInterval = setInterval(refreshWeatherData, 30000)
+  // Refresh weather data every 60 seconds
+  refreshInterval = setInterval(refreshWeatherData, 60000)
 })
 
 onUnmounted(() => {

@@ -60,13 +60,8 @@ export const getCurrentWeather = async (req, res, next) => {
       temperature: normalized.temperature,
       humidity: normalized.humidity,
       pressure: normalized.pressure,
-      wind_speed: normalized.wind_speed ?? null,
-      wind_direction: normalized.wind_direction ?? null,
-      rainfall: normalized.rainfall ?? null,
-      solar_radiation: normalized.solar_radiation ?? null,
-      uv_index: normalized.uv_index ?? null,
+      wind_speed: normalized.wind_speed,
       timestamp: normalized.timestamp || Math.floor(Date.now() / 1000),
-      firmware_version: normalized.firmware_version ?? null,
       fetchedAt: new Date().toISOString()
     };
 

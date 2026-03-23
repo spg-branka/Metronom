@@ -10,10 +10,6 @@ export const generateMockWeatherData = () => {
     humidity: Math.random() * 50 + 30, // Random humidity between 30% and 80%
     pressure: 960 + Math.random() * 110, // Random pressure between 960-1070 hPa
     wind_speed: Math.random() * 100, // 0 to 100 km/h
-    wind_direction: ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'][Math.floor(Math.random() * 8)],
-    rainfall: Math.random() * 10, // 0 to 10 mm
-    solar_radiation: Math.random() * 1000, // 0 to 1000 W/m²
-    uv_index: Math.floor(Math.random() * 12), // 0 to 11
     timestamp: Math.floor(Date.now() / 1000),
     receivedAt: new Date().toISOString()
   }

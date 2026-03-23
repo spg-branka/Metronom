@@ -51,7 +51,7 @@ export const normalizeWeatherData = data => {
     temperature: toFiniteNumber(pickFirstDefined(data, ['temperature', 'temp'])),
     humidity: toFiniteNumber(pickFirstDefined(data, ['humidity', 'hum'])),
     pressure: toFiniteNumber(pickFirstDefined(data, ['pressure', 'pres'])),
-    wind_speed: toFiniteNumber(pickFirstDefined(data, ['wind_speed', 'windSpeed'])),
+    wind_speed: toFiniteNumber(pickFirstDefined(data, ['wind_speed', 'windSpeed', 'wind'])),
     wind_direction: pickFirstDefined(data, ['wind_direction', 'windDirection']),
     rainfall: toFiniteNumber(pickFirstDefined(data, ['rainfall', 'rain'])),
     solar_radiation: toFiniteNumber(pickFirstDefined(data, ['solar_radiation', 'solarRadiation'])),
@@ -66,7 +66,7 @@ export const validateWeatherData = (data) => {
   const normalizedData = normalizeWeatherData(data);
 
   // Required fields
-  const requiredFields = ['temperature', 'humidity', 'pressure'];
+  const requiredFields = ['temperature', 'humidity', 'pressure', 'wind_speed'];
   requiredFields.forEach(field => {
     if (normalizedData[field] === undefined || normalizedData[field] === null) {
       errors.push(`Missing required field: ${field}`);

@@ -3,7 +3,7 @@ import { AppError } from '../middleware/errorHandler.js';
 import { getCachedData, setCachedData } from '../models/weatherData.js';
 
 const ESP32_URL = process.env.ESP32_URL || 'http://localhost:8080';
-const ESP32_TIMEOUT_MS = 5000;
+const ESP32_TIMEOUT_MS = 20000;
 
 /**
  * Fetches current weather data from ESP32 and returns it to frontend
@@ -30,7 +30,7 @@ export const getCurrentWeather = async (req, res, next) => {
 
     let response;
     try {
-      response = await fetch(`${ESP32_URL}/data`, {
+      response = await fetch(`${ESP32_URL}`, {
         method: 'GET',
         headers: {
           Accept: 'application/json'

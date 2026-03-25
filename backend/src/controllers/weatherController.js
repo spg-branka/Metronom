@@ -24,6 +24,9 @@ export const getCurrentWeather = async (req, res, next) => {
 
     console.log('Cache expired, fetching fresh data from ESP32...');
 
+    // Debug: print the ESP32_URL being used
+    console.log('Using ESP32_URL:', ESP32_URL);
+
     // Fetch data from ESP32 with explicit timeout cancellation
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), ESP32_TIMEOUT_MS);

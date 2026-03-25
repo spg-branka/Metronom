@@ -2,6 +2,8 @@ import { validateWeatherData } from '../middleware/validation.js';
 import { AppError } from '../middleware/errorHandler.js';
 import { getCachedData, setCachedData } from '../models/weatherData.js';
 
+require('dotenv').config();
+
 const ESP32_URL = process.env.ESP32_URL || 'http://localhost:8080';
 const ESP32_TIMEOUT_MS = 20000;
 

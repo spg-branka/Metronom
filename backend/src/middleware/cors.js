@@ -10,12 +10,20 @@ export const corsMiddleware = cors({
     // Allow requests with no origin (mobile apps, curl requests, etc)
     if (!origin) return callback(null, true);
 
+
+    // Add both http and https for production domain
+    const prodDomain = 'wetter-metronom.htl-wien5.schule';
     const allowedOrigins = [
       frontendUrl,
+      `http://${prodDomain}`,
+      `https://${prodDomain}`,
+      `http://www.${prodDomain}`,
+      `https://www.${prodDomain}`,
       'http://localhost:5173',
       'http://127.0.0.1:5173',
       'http://localhost:3000',
-      'http://127.0.0.1:3000'
+      'http://127.0.0.1:3000',
+      'http://10.91.160.201'
     ];
 
     if (allowedOrigins.includes(origin) || isDevelopment) {

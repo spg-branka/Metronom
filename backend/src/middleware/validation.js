@@ -87,9 +87,9 @@ export const validateWeatherData = (data) => {
   }
 
   if (normalizedData.pressure !== undefined && typeof normalizedData.pressure !== 'number') {
-    errors.push('Pressure must be a number');
+    errors.push('Pressure must be a number');                                   //change to 960 later
   } else if (normalizedData.pressure !== undefined && (normalizedData.pressure < 0 || normalizedData.pressure > 1070)) {
-    errors.push('Pressure out of range (960 to 1070 hPa)');
+    errors.push('Pressure out of range (0 to 1070 hPa)');
   }
 
   if (normalizedData.wind_speed !== undefined && typeof normalizedData.wind_speed !== 'number') {

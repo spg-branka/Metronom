@@ -17,13 +17,12 @@ export const corsMiddleware = cors({
       frontendUrl,
       `http://${prodDomain}`,
       `https://${prodDomain}`,
-      `http://www.${prodDomain}`,
-      `https://www.${prodDomain}`,
       'http://localhost:5173',
       'http://127.0.0.1:5173',
       'http://localhost:3000',
       'http://127.0.0.1:3000',
-      'http://10.91.160.201'
+      'http://10.91.160.201',
+      'https://10.91.160.201'
     ];
 
     if (allowedOrigins.includes(origin) || isDevelopment) {

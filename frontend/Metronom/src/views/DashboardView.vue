@@ -36,7 +36,7 @@
           <!-- Loading State -->
           <div v-else class="flex flex-col items-center justify-center py-8 sm:py-12">
             <div class="animate-spin rounded-full h-10 w-10 sm:h-12 sm:w-12 border-b-2 border-primary mb-4"></div>
-            <p class="text-gray-600 text-sm sm:text-base">Verbindung zum Server wird hergestellt...</p>
+            <p class="text-gray-600 text-sm sm:text-base">Wetterdaten werden geladen...</p>
           </div>
         </div>
 
@@ -50,8 +50,13 @@
             </div>
             <div class="w-full mt-4 sm:mt-0 flex flex-col justify-center items-center">
               <h3 class="text-xl sm:text-lg md:text-2xl lg:text-3xl font-bold text-text mb-4 text-center sm:text-left">Die Geschichte unserer Hofuhr</h3>
-              <p class="text-gray-600 text-base sm:text-sm md:text-base lg:text-lg leading-relaxed text-justify lg:text-center">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere reprehenderit impedit rerum necessitatibus quas amet iste, odio culpa, veritatis, ipsum totam aut voluptatem! Alias tempore, dignissimos voluptate, eaque necessitatibus reprehenderit excepturi quis dolore labore accusantium repellat corporis ratione nihil aperiam. Officiis accusamus sunt, eius similique commodi animi ea cumque veniam.
+              <p class="text-gray-600 text-base sm:text-sm md:text-base lg:text-lg leading-relaxed text-justify lg:text-center whitespace-pre-line break-words mobile-history-text">
+                Die Geschichte der Hofuhr der HTL Spengergasse ist eng mit einem traditionsreichen Wiener Unternehmen verbunden:
+                „Ing. Emil Schauer“, gegründet 1839, prägte die Entwicklung der Zeitmessung in Österreich maßgeblich.       
+
+                Besonders bekannt wurde Ing. Emil Schauer durch die Zusammenarbeit mit dem Wiener Stadtbauamt bei der Entwicklung der berühmten „Wiener Würfeluhren“.
+                Als Pionier für elektrische Uhrensysteme, öffentliche Großuhrenanlagen und Turmuhren setzte die Firma neue Maßstäbe.
+                Dass sich ein Uhrwerk dieses renommierten Herstellers heute in der HTL Spengergasse befindet, verleiht der Hofuhr einen besonderen historischen und kulturellen Wert – ein Wert, der durch dieses Projekt bewahrt wird.
               </p>
             </div>
           </div>
